@@ -22,6 +22,12 @@ public class MoveFurWithHand : MonoBehaviour
     float maxDisplacementMultiplier_x;
     float maxDisplacementMultiplier_z;
 
+    bool isRecovering = false;
+    Vector4 recoverPos;
+    int recoverCount = 0;
+    public float recoverDecayFactor = 1;
+    public float recoverAngularFrequency = 10;
+
     void Start()
     {
         m_Material = GetComponent<Renderer>().material;
@@ -31,7 +37,7 @@ public class MoveFurWithHand : MonoBehaviour
     }
 
 
-    void Update()
+    void LateUpdate()
     {
         if(isColliding)
         {
@@ -44,7 +50,53 @@ public class MoveFurWithHand : MonoBehaviour
             float MoveRatio_x = (-currentDistance_x / contactPointDistance_x + 1) * Mathf.Sign(contactPointDistance_x);
             float MoveRatio_z = (-currentDistance_z / contactPointDistance_z + 1) * Mathf.Sign(contactPointDistance_z);
 
-            m_Material.SetVector("_BaseMove", new Vector4(MoveRatio_x * baseMoveMultiplier * handHeightMultiplier * maxDisplacementMultiplier_x, 0, MoveRatio_z * baseMoveMultiplier * handHeightMultiplier * maxDisplacementMultiplier_z, 3));
+            Vector4 baseMoveOutput = new Vector4(MoveRatio_x * baseMoveMultiplier * handHeightMultiplier * maxDisplacementMultiplier_x, 0, MoveRatio_z * baseMoveMultiplier * handHeightMultiplier * maxDisplacementMultiplier_z, 3);
+
+            if (!isRecovering)
+            {
+                m_Material.SetVector("_BaseMove", baseMoveOutput);
+            }
+            else
+            {
+                Vector4 currentRecoverPos = m_Material.GetVector("_BaseMove");
+                if((currentRecoverPos.x - baseMoveOutput.x) * Mathf.Sign(contactPointDistance_x) <= 0)
+                {
+                    currentRecoverPos.x = baseMoveOutput.x;
+                }
+                if((currentRecoverPos.z - baseMoveOutput.z) * Mathf.Sign(contactPointDistance_z) <= 0)
+                {
+                    currentRecoverPos.z = baseMoveOutput.z;
+                }
+
+                m_Material.SetVector("_BaseMove", currentRecoverPos);
+
+                if(currentRecoverPos == baseMoveOutput)
+                {
+                    recoverCount = 0;
+                    isRecovering = false;
+                }
+            }    
+        }
+    }
+
+    void Update()
+    {
+        if (isRecovering)
+        {
+            recoverCount++;
+            Vector4 currentRecoverPos = new Vector4(0, 0, 0, 3);
+            currentRecoverPos.x = recoverPos.x * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime) * Mathf.Cos(recoverAngularFrequency * recoverCount * Time.fixedDeltaTime);
+            currentRecoverPos.z = recoverPos.z * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime) * Mathf.Cos(recoverAngularFrequency * recoverCount * Time.fixedDeltaTime);
+            m_Material.SetVector("_BaseMove", currentRecoverPos);
+
+            if (Mathf.Abs(recoverPos.x * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.01 && 
+                Mathf.Abs(recoverPos.z * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.01 &&
+                !isColliding)
+            {
+                recoverCount = 0;
+                isRecovering = false;
+                m_Material.SetVector("_BaseMove", new Vector4(0, 0, 0, 3));
+            }
         }
     }
 
@@ -53,7 +105,6 @@ public class MoveFurWithHand : MonoBehaviour
         if(other.tag == "Hand")
         {
             Debug.Log("enter");
-            m_Material.SetVector("_WindFreq", new Vector4(0, 0, 0, 1));
             contactPointDistance_x = transform.position.x - (hand.transform.position.x - handColliderCenter.x);
             contactPointDistance_z = transform.position.z - (hand.transform.position.z - handColliderCenter.z);
 
@@ -69,8 +120,9 @@ public class MoveFurWithHand : MonoBehaviour
         {
             Debug.Log("exit");
             isColliding = false;
-            m_Material.SetVector("_BaseMove", new Vector4(0, 0, 0, 3));
-            m_Material.SetVector("_WindFreq", new Vector4(0.2f, 0.05f, 0.2f, 1));
+            recoverPos = m_Material.GetVector("_BaseMove");
+            recoverCount = 0;
+            isRecovering = true;
         }
     }
 }

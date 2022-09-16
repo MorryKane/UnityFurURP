@@ -50,5 +50,5 @@ Material:
     - _BaseColor: {r: 0.9433962, g: 0.7261462, b: 0.44855818, a: 1}
     - _BaseMove: {r: 0, g: 0, b: 0, a: 3}
     - _WindFreq: {r: 0.2, g: 0.05, b: 0.2, a: 1}
-    - _WindMove: {r: 0.4, g: 0.1, b: 0.4, a: 0.2}
+    - _WindMove: {r: 0.2, g: 0.05, b: 0.2, a: 0}
   m_BuildTextureStacks: []

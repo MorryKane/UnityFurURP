@@ -289,6 +289,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!54 &700681561
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -616,6 +618,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!54 &982500882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -746,6 +750,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!54 &1054844576
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -955,6 +961,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!1001 &1590494075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1114,6 +1122,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!54 &1793795547
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1385,6 +1395,8 @@ MonoBehaviour:
   hand: {fileID: 1741201708}
   baseMoveMultiplier: 2
   handStandardHeight: 0.15
+  recoverDecayFactor: 0.5
+  recoverAngularFrequency: 0.5
 --- !u!54 &1932376067
 Rigidbody:
   m_ObjectHideFlags: 0
