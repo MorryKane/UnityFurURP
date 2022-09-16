@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fur Geometry Lit
+  m_Name: (test)Fur Geometry Lit 1
   m_Shader: {fileID: 4800000, guid: 6021d2c94df225f4b95594cee8f9ba72, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -27,14 +27,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Damper: 1
-    - _FurJoint: 2
-    - _FurLength: 0.2
+    - _FurJoint: 6
+    - _FurLength: 19.5
     - _Gravity: -0.5
     - _Metallic: 0
-    - _MoveScale: 1
+    - _MoveScale: 3
     - _NormalFactor: 0.577
     - _Occlusion: 0.894
-    - _RandomDirection: 0.647
+    - _RandomDirection: 0.145
     - _RimLightIntensity: 0.908
     - _RimLightPower: 3.44
     - _ShadowExtraBias: -0.336
@@ -45,8 +45,8 @@ Material:
     - _TessMinDist: 1
     m_Colors:
     - _AmbientColor: {r: 0.072149016, g: 0.13214347, b: 0.17924526, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseMove: {r: 0, g: 0, b: 0, a: 2}
-    - _WindFreq: {r: 0.5, g: 0.7, b: 0.9, a: 1}
-    - _WindMove: {r: 0.3, g: 0.1, b: 0.2, a: 2}
+    - _BaseColor: {r: 0.9150943, g: 0.7082008, b: 0.31510323, a: 1}
+    - _BaseMove: {r: 0, g: 0, b: 0, a: 3}
+    - _WindFreq: {r: 0.2, g: 0.05, b: 0.2, a: 1}
+    - _WindMove: {r: 0.1, g: 0.05, b: 0.1, a: 2}
   m_BuildTextureStacks: []

@@ -11,7 +11,7 @@ Properties
     _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
 
     [Header(Fur)][Space]
-    _FurLength("Fur Length", Range(0.0, 2.0)) = 0.3
+    _FurLength("Fur Length", Range(0.0, 100.0)) = 0.3
     [IntRange] _FurJoint("Fur Joint", Range(0, 6)) = 3
     _Occlusion("Occlusion", Range(0.0, 1.0)) = 0.3
     _RandomDirection("Random Direction", Range(0.0, 1.0)) = 0.3

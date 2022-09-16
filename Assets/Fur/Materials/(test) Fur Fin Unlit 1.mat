@@ -36,7 +36,7 @@ Material:
     - _Density: 2.49
     - _DrawOrigPolygon: 1
     - _FaceViewProdThresh: 1
-    - _FinJointNum: 10
+    - _FinJointNum: 5
     - _FinLength: 0.183
     - _Metallic: 0.5
     - _Occlusion: 0.7
