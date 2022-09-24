@@ -61,12 +61,10 @@ public class MoveFurWithHand : MonoBehaviour
                     if(currentRecoverPos.x * baseMoveOutput.x > 0 && Mathf.Abs(currentRecoverPos.x) < Mathf.Abs(baseMoveOutput.x))
                     {
                         recoverRem.x = 0.0001f;
-                        m_Material.SetVector("_BaseMove", new Vector4(baseMoveOutput.x + recoverRem.x, 0, currentRecoverPos.z, 3));
                     }
                     else if (currentRecoverPos.x * baseMoveOutput.x < 0)
                     {
                         recoverRem.x = currentRecoverPos.x;
-                        m_Material.SetVector("_BaseMove", new Vector4(baseMoveOutput.x + recoverRem.x, 0, currentRecoverPos.z, 3));
                     }
                 }
                 else m_Material.SetVector("_BaseMove", new Vector4(baseMoveOutput.x + recoverRem.x, 0, currentRecoverPos.z, 3));
@@ -77,12 +75,10 @@ public class MoveFurWithHand : MonoBehaviour
                     if (currentRecoverPos.z * baseMoveOutput.z > 0 && Mathf.Abs(currentRecoverPos.z) < Mathf.Abs(baseMoveOutput.z))
                     {
                         recoverRem.z = 0.0001f;
-                        m_Material.SetVector("_BaseMove", new Vector4(currentRecoverPos.x, 0, baseMoveOutput.z + recoverRem.z, 3));
                     }
                     else if (currentRecoverPos.z * baseMoveOutput.z < 0)
                     {
                         recoverRem.z = currentRecoverPos.z;
-                        m_Material.SetVector("_BaseMove", new Vector4(currentRecoverPos.x, 0, baseMoveOutput.z + recoverRem.z, 3));
                     }
                 }
                 else m_Material.SetVector("_BaseMove", new Vector4(currentRecoverPos.x, 0, baseMoveOutput.z + recoverRem.z, 3));
