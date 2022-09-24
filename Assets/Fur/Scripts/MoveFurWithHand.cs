@@ -58,13 +58,13 @@ public class MoveFurWithHand : MonoBehaviour
                 Vector4 currentRecoverPos = m_Material.GetVector("_BaseMove");
                 if (recoverRem.x == 0)
                 {
-                    if(currentRecoverPos.x * baseMoveOutput.x > 0 && Mathf.Abs(currentRecoverPos.x) < Mathf.Abs(baseMoveOutput.x))
-                    {
-                        recoverRem.x = 0.0001f;
-                    }
-                    else if (currentRecoverPos.x * baseMoveOutput.x < 0)
+                    if (currentRecoverPos.x * baseMoveOutput.x < 0)
                     {
                         recoverRem.x = currentRecoverPos.x;
+                    }
+                    else if (Mathf.Abs(currentRecoverPos.x) < Mathf.Abs(baseMoveOutput.x))
+                    {
+                        recoverRem.x = 0.0001f;
                     }
                 }
                 else m_Material.SetVector("_BaseMove", new Vector4(baseMoveOutput.x + recoverRem.x, 0, currentRecoverPos.z, 3));
@@ -72,13 +72,13 @@ public class MoveFurWithHand : MonoBehaviour
                 currentRecoverPos = m_Material.GetVector("_BaseMove");
                 if (recoverRem.z == 0)
                 {
-                    if (currentRecoverPos.z * baseMoveOutput.z > 0 && Mathf.Abs(currentRecoverPos.z) < Mathf.Abs(baseMoveOutput.z))
-                    {
-                        recoverRem.z = 0.0001f;
-                    }
-                    else if (currentRecoverPos.z * baseMoveOutput.z < 0)
+                    if (currentRecoverPos.z * baseMoveOutput.z < 0)
                     {
                         recoverRem.z = currentRecoverPos.z;
+                    }
+                    else if (Mathf.Abs(currentRecoverPos.z) < Mathf.Abs(baseMoveOutput.z))
+                    {
+                        recoverRem.z = 0.0001f;
                     }
                 }
                 else m_Material.SetVector("_BaseMove", new Vector4(currentRecoverPos.x, 0, baseMoveOutput.z + recoverRem.z, 3));
@@ -104,8 +104,8 @@ public class MoveFurWithHand : MonoBehaviour
             currentRecoverPos.z = recoverStartPos.z * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime) * Mathf.Cos(recoverAngularFrequency * recoverCount * Time.fixedDeltaTime);
             m_Material.SetVector("_BaseMove", currentRecoverPos);
 
-            if (Mathf.Abs(recoverStartPos.x * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.01 && 
-                Mathf.Abs(recoverStartPos.z * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.01 &&
+            if (Mathf.Abs(recoverStartPos.x * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.02 && 
+                Mathf.Abs(recoverStartPos.z * Mathf.Exp(-recoverCount * recoverDecayFactor * Time.fixedDeltaTime)) < 0.02 &&
                 !isColliding)
             {
                 recoverCount = 0;
